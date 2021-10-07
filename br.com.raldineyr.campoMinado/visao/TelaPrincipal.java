@@ -7,7 +7,7 @@ import br.com.raldineyr.campoMinado.modelo.Tabuleiro;
 public class TelaPrincipal extends JFrame {
 	
 	public TelaPrincipal() {
-		Tabuleiro tabuleiro = new Tabuleiro(16, 16, 40); // 10 30 e 50
+		Tabuleiro tabuleiro = new Tabuleiro(16,30,50);
 		
 		add(new PainelTabuleiro(tabuleiro));
 		
