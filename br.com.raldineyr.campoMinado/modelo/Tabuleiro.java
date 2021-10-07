@@ -60,7 +60,6 @@ public class Tabuleiro implements CampoObservador{
 		for (int linha = 0; linha < linhas; linha++){
 			for (int coluna = 0; coluna < colunas; coluna++) {
 				
-				campos.add(new Campo(linha, coluna));
 				Campo campo = new Campo(linha, coluna);
 				campo.registarObservador(this);
 				campos.add(campo);
@@ -86,8 +85,8 @@ public class Tabuleiro implements CampoObservador{
 		do {
 			
 			int aleatorio = (int) (Math.random() * campos.size());
-			minasArmadas = campos.stream().filter(minado).count();
 			campos.get(aleatorio).minar();
+			minasArmadas = campos.stream().filter(minado).count();
 
 		} while(minasArmadas < minas);
 	}
@@ -98,7 +97,9 @@ public class Tabuleiro implements CampoObservador{
 	}
 	
 	public void reiniciar(){
-		campos.stream().forEach(c -> c.reiniciar());
+		campos.stream()
+		.forEach(c -> c.reiniciar());
+		
 		sortearAsMinas();
 	}
 	
@@ -113,7 +114,6 @@ public class Tabuleiro implements CampoObservador{
 
 	@Override
 	public void eventoOcorreu(Campo campo, CampoEvento evento) {
-		
 		if (evento == CampoEvento.EXPLODIR) {
 			mostrarMinas();
 			notificarObservadores(false);
@@ -124,9 +124,10 @@ public class Tabuleiro implements CampoObservador{
 	}
 	
 	private void mostrarMinas() {
-		campos.stream()
-		.filter(c -> c.isMinado())
-		.forEach(c -> c.setAberto(true));
+	    campos.stream()
+			.filter(c -> c.isMinado())
+			.filter(c -> !c.isMarcado())
+			.forEach(c -> c.setAberto(true));
 	}
 }
 
