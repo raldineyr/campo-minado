@@ -41,12 +41,10 @@ public class Campo {
 		
 		if(deltaGeral == 1 && !diagonal){
 			vizinhos.add(vizinho);
-			
 			return true;
 			
 		}else if(deltaGeral == 2 && diagonal){
 			vizinhos.add(vizinho);
-			
 			return true;
 			
 		} else {
@@ -152,11 +150,4 @@ public class Campo {
 		notificarObservadores(CampoEvento.REINICIAR);
 	}
 
-	
- 	public boolean isGanhou(){
-		
-		return true;
-		
-	}
-	
 }
