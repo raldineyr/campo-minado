@@ -1,3 +1,4 @@
+
 package br.com.raldineyr.campoMinado.visao;
 
 import java.awt.GridLayout;
@@ -17,7 +18,7 @@ public class PainelTabuleiro extends JPanel{
 				tabuleiro.getLinhas(), tabuleiro.getColunas()));
 	
 		 tabuleiro.paraCadaCampo(c -> add(new BotaoCampo(c)));		
-		 tabuleiro.paraCadaCampo( e -> {
+		 tabuleiro.registrarObservador( e -> {
 			 
 			 SwingUtilities.invokeLater(() -> {
 				 
