@@ -21,8 +21,8 @@ public class Tabuleiro implements CampoObservador{
 		this.minas = minas;
 	
 		gerarCampos();
-		associarOsVizinhos(); 
-		sortearAsMinas();	
+		associarVizinhos(); 
+		sortearMinas();	
 	}
 	
 	public void paraCadaCampo(Consumer<Campo> funcao) {
@@ -67,17 +67,17 @@ public class Tabuleiro implements CampoObservador{
 		}
 	}
 	
-	private void associarOsVizinhos() {
+	private void associarVizinhos() {
 		
 		for (Campo c1: campos){
 			for(Campo c2: campos) {
-			c1.adicionarVizinho(c2);
+				c1.adicionarVizinho(c2);
 			
 			}
 		}	
 	}
 	
-	private void sortearAsMinas() {
+	private void sortearMinas() {
 		
 		long minasArmadas = 0;
 		Predicate<Campo> minado = c -> c.isMinado();
@@ -100,7 +100,7 @@ public class Tabuleiro implements CampoObservador{
 		campos.stream()
 		.forEach(c -> c.reiniciar());
 		
-		sortearAsMinas();
+		sortearMinas();
 	}
 	
 	
@@ -130,4 +130,3 @@ public class Tabuleiro implements CampoObservador{
 			.forEach(c -> c.setAberto(true));
 	}
 }
-
